@@ -11,9 +11,9 @@ app = Flask(__name__)
 app.secret_key = 'tu_clave_secreta_aqui'  # Cambia esto por una clave secreta segura
 
 # Versión de la aplicación
-VERSION_APP = "Versión 1.3 del Mayo 15 del 2025"
+VERSION_APP = "Versión 1.3 del Mayo 20 del 2025"
 #
-CREATOR_APP = "Nelson Rodriguez/https://github.com/frodriguezg11/BigDataApp1"
+CREATOR_APP = "Nelson Rodriguez/github.com/frodriguezg11/BigDataApp1"
 
 mongo_uri = os.environ.get("MONGO_URI")
 
@@ -78,12 +78,12 @@ def login():
             db = client['administracion']
             security_collection = db['seguridad']
             usuario = request.form['usuario']
-            password = request.form['password']
+            password = request.form['pass']
             
             # Verificar credenciales en MongoDB
             user = security_collection.find_one({
                 'usuario': usuario,
-                'password': password
+                'pass': password
             })
             
             if user:

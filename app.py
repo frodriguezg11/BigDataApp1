@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi 
+from pymongo.server_api import ServerApi
 import zipfile
 import os
 from datetime import datetime
@@ -17,12 +17,11 @@ def inject_now():
     return {'now': datetime.now}
 
 # Versión de la aplicación
-VERSION_APP = "Versión 2.2 del Mayo 22 del 2025"
-CREATOR_APP = "Nelson Rodríguez/https://github.com/frodriguezg11/BigDataApp1"
+VERSION_APP = "Versión 3 de 1 de junio del 2025"
+CREATOR_APP = "Nelson Rodríguez/https://github.com/frodriguezg11"
 mongo_uri   = os.environ.get("MONGO_URI")
 
-if not mongo_uri:
-    #uri = "mongodb+srv://DbCentral:DbCentral2025@cluster0.vhltza7.mongodb.net/?appName=Cluster0"
+if not mongo_uri:    
     uri         = "mongodb+srv://frodriguezg1:pToGRBn4D4DGPSkg@cluster0.34k4ft7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
     mongo_uri   = uri
 

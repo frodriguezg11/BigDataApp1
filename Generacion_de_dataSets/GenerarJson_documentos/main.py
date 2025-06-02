@@ -18,7 +18,7 @@ def main():
     func.crear_carpeta(output_dir)
     
     # directorio donde estan los documentos/libros
-    source_dir = r"C:/Users/luisfc/Documents/libros"
+    source_dir = r"C:\Users\Nelson\Documents\libros"
     
     # Counter for processed files
     totArchivos = func.contar_archivos_json(output_dir)

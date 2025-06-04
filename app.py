@@ -18,7 +18,7 @@ def inject_now():
 
 # Versión de la aplicación
 VERSION_APP = "Versión 3.0 del 01 de junio del 2025"
-CREATOR_APP = "Nelson Rodríguez/ github.com/frodriguezg11/BigDataApp1"
+CREATOR_APP = "Nelson Rodríguez: github.com/frodriguezg11/BigDataApp1"
 mongo_uri   = os.environ.get("MONGO_URI")
 
 if not mongo_uri:    

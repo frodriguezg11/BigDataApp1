@@ -17,8 +17,8 @@ def inject_now():
     return {'now': datetime.now}
 
 # Versión de la aplicación
-VERSION_APP = "Versión 3.0  del Mayo 22 del 2025"
-CREATOR_APP = "Nelson Rodríguez: https://github.com/frodriguezg11"
+VERSION_APP = "Versión 3.0  del 1 de junio del 2025"
+CREATOR_APP = "Nelson Rodríguez: github.com/frodriguezg11"
 mongo_uri   = os.environ.get("MONGO_URI")
 
 if not mongo_uri:
@@ -55,17 +55,16 @@ def about():
 @app.route('/contacto', methods=['GET', 'POST'])
 def contacto():
     if request.method == 'POST':
-        # 1. Recoger los datos del formulario
+      
         nombre   = request.form.get('nombre')
         email    = request.form.get('email')
         asunto   = request.form.get('asunto')
         mensaje  = request.form.get('mensaje')
 
-        # 2. Guardar en MongoDB (colección "contacto")
         client = connect_mongo()
         if client:
             try:
-                db  = client['administracion']   # usa la misma BD de seguridad
+                db  = client['administracion'] 
                 col = db['contacto']
                 col.insert_one({
                     "nombre": nombre,
@@ -84,7 +83,6 @@ def contacto():
 
         return redirect(url_for('contacto'))
 
-    # GET - simplemente mostrar el formulario
     return render_template('contacto.html',
                            version=VERSION_APP,
                            creador=CREATOR_APP)

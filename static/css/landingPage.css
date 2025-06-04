@@ -163,3 +163,7 @@ footer.bg-light {
   background: var(--primary-color) !important; 
   color: var(--neutral-color) !important;     
 }
+
+.index-hero {
+  max-width: 680px;  /* o el valor que prefieras */
+}

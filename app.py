@@ -548,16 +548,6 @@ def elastic_eliminar_documento():
 
 @app.route('/buscador', methods=['GET', 'POST'])
 def buscador():
-    """
-    Construye la consulta para Elasticsearch de forma correcta:
-
-    * 'texto'   → match_phrase sobre campo analizado.
-    * 'titulo'  → match_phrase.
-    * 'autor'   → match_phrase.
-    * 'categoria' → wildcard sobre sub-campo keyword (ej.:  *historia*).
-
-    Solo añade el filtro de fechas si el usuario proporciona al menos una.
-    """
     if request.method == 'POST':
         try:
             # Parámetros del formulario
@@ -661,7 +651,7 @@ def buscador():
 def search():
     try:
         data = request.get_json()
-        index_name = data.get('index', 'ucentral_test')
+        index_name = data.get('index', 'big_data1')
         query = data.get('query')
 
         # Ejecutar la búsqueda en Elasticsearch

@@ -17,8 +17,8 @@ def inject_now():
     return {'now': datetime.now}
 
 # Versión de la aplicación
-VERSION_APP = "Versión 3.0 de 1 de junio del 2025"
-CREATOR_APP = "Nelson Rodríguez: github.com/frodriguezg11"
+VERSION_APP = "Versión 3.0 del 01 de junio del 2025"
+CREATOR_APP = "Nelson Rodríguez/ github.com/frodriguezg11/BigDataApp1"
 mongo_uri   = os.environ.get("MONGO_URI")
 
 if not mongo_uri:    
@@ -42,8 +42,6 @@ client = Elasticsearch(
     api_key="dEpCdU41Y0JJQ2FsMzVuWFhJcXg6dW5Nd2NBWlVSZF85OHcyTzRiX1hrUQ=="
 )
 INDEX_NAME= "big_data1"
-
-
 
 @app.route('/')
 def index():

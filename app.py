@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 import zipfile
@@ -55,9 +55,39 @@ def about():
 @app.route('/contacto', methods=['GET', 'POST'])
 def contacto():
     if request.method == 'POST':
-        # Aquí va la lógica para procesar el formulario de contacto
+        # 1. Recoger los datos del formulario
+        nombre   = request.form.get('nombre')
+        email    = request.form.get('email')
+        asunto   = request.form.get('asunto')
+        mensaje  = request.form.get('mensaje')
+
+        # 2. Guardar en MongoDB (colección "contacto")
+        client = connect_mongo()
+        if client:
+            try:
+                db  = client['administracion']   # usa la misma BD de seguridad
+                col = db['contacto']
+                col.insert_one({
+                    "nombre": nombre,
+                    "email": email,
+                    "asunto": asunto,
+                    "mensaje": mensaje,
+                    "fecha": datetime.utcnow()
+                })
+                flash('¡Mensaje enviado correctamente!', 'success')
+            except Exception as e:
+                flash(f'Error al guardar el mensaje: {str(e)}', 'danger')
+            finally:
+                client.close()
+        else:
+            flash('Error de conexión con la base de datos.', 'danger')
+
         return redirect(url_for('contacto'))
-    return render_template('contacto.html', version=VERSION_APP,creador=CREATOR_APP)
+
+    # GET - simplemente mostrar el formulario
+    return render_template('contacto.html',
+                           version=VERSION_APP,
+                           creador=CREATOR_APP)
 
 
 @app.route('/login', methods=['GET', 'POST'])

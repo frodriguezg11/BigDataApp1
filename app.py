@@ -17,7 +17,7 @@ def inject_now():
     return {'now': datetime.now}
 
 # Versión de la aplicación
-VERSION_APP = "Versión 3 de 1 de junio del 2025"
+VERSION_APP = "Versión 3.0 de 1 de junio del 2025"
 CREATOR_APP = "Nelson Rodríguez: github.com/frodriguezg11"
 mongo_uri   = os.environ.get("MONGO_URI")
 

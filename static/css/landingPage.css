@@ -159,10 +159,7 @@ textarea.form-control {
     font-size: 1.25rem;
   }
 }
-footer.bg-light {
-  background: var(--primary-color) !important; 
-  color: var(--neutral-color) !important;     
-}
+
 
 .index-hero {
   max-width: 540px;  

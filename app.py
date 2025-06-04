@@ -17,13 +17,13 @@ def inject_now():
     return {'now': datetime.now}
 
 # Versión de la aplicación
-VERSION_APP = "Versión 2.2 del Mayo 22 del 2025"
-CREATOR_APP = "Nombre del creador/ruta github"
+VERSION_APP = "Versión 3.0  del Mayo 22 del 2025"
+CREATOR_APP = "Nelson Rodríguez: https://github.com/frodriguezg11"
 mongo_uri   = os.environ.get("MONGO_URI")
 
 if not mongo_uri:
     #uri = "mongodb+srv://DbCentral:DbCentral2025@cluster0.vhltza7.mongodb.net/?appName=Cluster0"
-    uri         = "mongodb+srv://DbCentral:DbCentral2025@cluster0.vhltza7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    uri         = "mongodb+srv://frodriguezg1:pToGRBn4D4DGPSkg@cluster0.34k4ft7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
     mongo_uri   = uri
 
 # Función para conectar a MongoDB
@@ -39,10 +39,10 @@ def connect_mongo():
 
 # Configuración de Elasticsearch
 client = Elasticsearch(
-    "https://indexprueba-cb87f3.es.us-east-1.aws.elastic.cloud:443",
-    api_key="Q3VEYy1KWUJHdDB6RGdJR3gyc0g6cThLVzhJZS05eGxta0Q0NXQxTHYxZw=="
+    "https://my-elasticsearch-project-fa6469.es.us-east-1.aws.elastic.cloud:443",
+    api_key="dEpCdU41Y0JJQ2FsMzVuWFhJcXg6dW5Nd2NBWlVSZF85OHcyTzRiX1hrUQ=="
 )
-INDEX_NAME = "ucentral_test"
+INDEX_NAME = "big_data1"
 
 @app.route('/')
 def index():

@@ -41,8 +41,8 @@ client = Elasticsearch(
     "https://my-elasticsearch-project-fa6469.es.us-east-1.aws.elastic.cloud:443",
     api_key="dEpCdU41Y0JJQ2FsMzVuWFhJcXg6dW5Nd2NBWlVSZF85OHcyTzRiX1hrUQ=="
 )
-INDEX_NAME= "app1"
-#INDEX_NAME = "ucentral_test"
+INDEX_NAME= "big_data1"
+
 
 
 @app.route('/')

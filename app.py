@@ -579,51 +579,48 @@ def elastic_eliminar_documento():
 def buscador():
     if request.method == 'POST':
         try:
-            # 1. Obtener parámetros del formulario
-            search_type  = request.form.get('search_type')   # 'texto', 'titulo', 'autor' o 'categoria'
-            search_text  = request.form.get('search_text')   # lo que el usuario escribe
+            search_type  = request.form.get('search_type')   
+            search_text  = request.form.get('search_text')  
             fecha_desde  = request.form.get('fecha_desde')
             fecha_hasta  = request.form.get('fecha_hasta')
 
-            # 2. Fechas por defecto si vienen vacías
             if not fecha_desde:
                 fecha_desde = "1500-01-01"
             if not fecha_hasta:
                 fecha_hasta = datetime.now().strftime("%Y-%m-%d")
 
-            # 3. Mapeo de campos según cómo estén indexados en Elasticsearch
-            #    Ajusta estos valores para que coincidan exactamente con los nombres de campo en tu índice.
-            field_map = {
-                'texto':     'texto',       # campo exacto en ES
-                'titulo':    'Titulo',      # si en ES está "Titulo" con T mayúscula
-                'autor':     'Autor',       # si en ES está "Autor"
-                'categoria': 'Categoria'    # si en ES está "Categoria"
-            }
+                   field_map = {
+                                "texto":     "texto",
+                                "titulo":    "nombre",   
+                                "autor":     "Autor",      
+                                "categoria": "Categoria"
+                              }
             campo = field_map.get(search_type, search_type)
 
-            # 4. Construir la consulta base usando wildcard para coincidencias parciales
+         
             query = {
                 "query": {
                     "bool": {
                         "must": [
-                            # 4.a) Condición de búsqueda parcial (wildcard)
+                            
                             {
                                 "wildcard": {
                                     campo: {
                                         "value": f"*{search_text.lower()}*"
+                                        "case_insensitive": True 
                                     }
                                 }
                             },
-                            # 4.b) Filtro por rango de fecha
+                            
                             {
-                                "range": {
-                                    "fecha": {
-                                        "format": "yyyy-MM-dd",
-                                        "gte": fecha_desde,
-                                        "lte": fecha_hasta
+                "range": {
+                            "fecha_generado": {       
+                                "format": "yyyy-MM-dd",
+                                "gte": fecha_desde,
+                                "lte": fecha_hasta
                                     }
                                 }
-                            }
+                            },
                         ]
                     }
                 },

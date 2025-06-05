@@ -687,6 +687,7 @@ def buscador():
         'buscador.html',
         version=VERSION_APP,
         creador=CREATOR_APP
+    )
 
 @app.route('/api/search', methods=['POST'])
 def search():

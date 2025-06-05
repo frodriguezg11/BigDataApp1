@@ -137,7 +137,7 @@
                 </div>
             </div>
 
-            <!-- Columna de resultados -->
+           
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">
@@ -156,10 +156,10 @@
                             <tbody>
                                 {% for hit in hits %}
                                 <tr>
-                                    <td>{{ hit._source.titulo }}</td>
-                                    <td>{{ hit._source.autor }}</td>
-                                    <td>{{ hit._source.categoria }}</td>
-                                    <td>{{ hit._source.fecha }}</td>
+                                    <td>{{ hit._source.nombre }}</td>
+                                    <td>{{ hit._source.Autor }}</td>
+                                    <td>{{ hit._source.Categoria }}</td>
+                                    <td>{{ hit._source.fecha_generado }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

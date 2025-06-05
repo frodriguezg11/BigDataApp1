@@ -589,12 +589,12 @@ def buscador():
             if not fecha_hasta:
                 fecha_hasta = datetime.now().strftime("%Y-%m-%d")
 
-                   field_map = {
-                                "texto":     "texto",
-                                "titulo":    "nombre",   
-                                "autor":     "Autor",      
-                                "categoria": "Categoria"
-                              }
+            field_map = {
+                          "texto":     "texto",
+                          "titulo":    "nombre",   
+                          "autor":     "Autor",      
+                           "categoria": "Categoria"
+                                  }
             campo = field_map.get(search_type, search_type)
 
          
@@ -606,7 +606,7 @@ def buscador():
                             {
                                 "wildcard": {
                                     campo: {
-                                        "value": f"*{search_text.lower()}*"
+                                        "value": f"*{search_text.lower()}*",
                                         "case_insensitive": True 
                                     }
                                 }
@@ -641,7 +641,7 @@ def buscador():
                     },
                     "Fecha": {
                         "date_histogram": {
-                            "field": "fecha",
+                            "field": "fecha_generado",
                             "calendar_interval": "year",
                             "format": "yyyy"
                         }
@@ -649,13 +649,11 @@ def buscador():
                 }
             }
 
-            # 5. Ejecutar la búsqueda en Elasticsearch
             response = client.search(
                 index=INDEX_NAME,
                 body=query
             )
 
-            # 6. Extraer resultados para la plantilla
             hits         = response['hits']['hits']
             aggregations = response.get('aggregations', {})
 
